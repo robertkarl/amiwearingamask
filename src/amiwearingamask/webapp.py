@@ -5,13 +5,17 @@ from fastai.vision import load_learner
 
 
 bp = flask.Blueprint("webapp", __name__)
-model = load_learner('model')
-
+learner = None
 classes = ['mask', 'nomask']
+
 def get_prediction_name(image_name):
     image = fastai.vision.open_image(image_name)
-    val = model.predict(image)
-    argmaxres = val[1].argmax()
+    global learner
+    if not learner:
+        learner = load_learner('model')
+    val = learner.predict(image)
+    print('predicting {}'.format(val))
+    argmaxres = val[2].argmax()
     highest_category = argmaxres.item()
     res = classes[highest_category]
     return res

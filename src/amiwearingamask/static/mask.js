@@ -13,21 +13,23 @@ function trigger_image_analysis(data_uri) {
             console.log(stuff);
         },
         success: function(data, status, jqXHR) {
-            console.log(data);
-            console.log('status was: ' + status);
-            $('#category-name').text(data.prediction);
+            var pred = data.prediction;
+            var to_display = '';
+            console.log('predicted: ' + pred);
+            if (pred == 'mask') {
+                to_display = 'YES';
+            }
+            else {
+                to_display = 'NO';
+            }
+            $('#category-name').text(to_display);
         }
-    }).done(function() {
-        console.log('Done with request');
     });
     document.getElementById('results').innerHTML =
-        '<h2>Here is your image:</h2>' +
         '<img src="'+data_uri+'"/>';
 }
 
 function loop_snapshot() {
-    console.log("Looping snapshot.");
-    // take snapshot and get image data
     Webcam.snap(trigger_image_analysis);
     var targetFPS = 10;
     setTimeout(loop_snapshot, 1000 / targetFPS);
