@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: aiwam
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: aiwam
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aiwam
+spec:
+  selector:
+    matchLabels:
+      app: aiwam
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: aiwam
+    spec:
+      containers:
+      - name: aiwam
+        image: robertkarl/amiwearingamask
+        ports:
+        - containerPort: 80

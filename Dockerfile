@@ -21,9 +21,12 @@ RUN pip3 install -q -r requirements.txt
 # Application dependencies and setup
 EXPOSE 80
 
+WORKDIR /aiwam/code/src
+ADD src .
+WORKDIR /aiwam/code/model
+ADD model .
 WORKDIR /aiwam/code/
-ADD src/ .
-ADD model/ .
+ADD README.md .
 ADD setup.py .
 RUN pip3 install .
 
@@ -34,5 +37,4 @@ ENV LANG=C.UTF-8
 ENV FLASK_ENV=production
 ENV PYTHONPATH=src
 
-ENTRYPOINT uwsgi --ini src/amiwearingamask/wsgi-80.ini --wsgi-disable-file-wrapper
-
+ENTRYPOINT ["uwsgi", "--ini", "src/amiwearingamask/wsgi-80.ini"]
