@@ -31,6 +31,6 @@ function trigger_image_analysis(data_uri) {
 
 function loop_snapshot() {
     Webcam.snap(trigger_image_analysis);
-    var targetFPS = 10;
+    var targetFPS = 3;
     setTimeout(loop_snapshot, 1000 / targetFPS);
 }
