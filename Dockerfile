@@ -15,7 +15,6 @@ RUN pip3 install --upgrade pip
 RUN pip3 install -q uwsgi
 ADD requirements.txt .
 RUN pip3 install -q -r requirements.txt
-RUN pip3 install pillow-simd
 
 EXPOSE 80
 

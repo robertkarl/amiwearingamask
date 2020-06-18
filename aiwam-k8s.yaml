@@ -25,6 +25,6 @@ spec:
     spec:
       containers:
       - name: aiwam
-        image: robertkarl/amiwearingamask:6fb398b
+        image: robertkarl/amiwearingamask:565c7db
         ports:
         - containerPort: 80
