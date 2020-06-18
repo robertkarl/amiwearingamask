@@ -17,7 +17,7 @@ spec:
   selector:
     matchLabels:
       app: aiwam
-  replicas: 2
+  replicas: 6
   template:
     metadata:
       labels:
@@ -25,6 +25,6 @@ spec:
     spec:
       containers:
       - name: aiwam
-        image: robertkarl/amiwearingamask
+        image: robertkarl/amiwearingamask:6fb398b
         ports:
         - containerPort: 80

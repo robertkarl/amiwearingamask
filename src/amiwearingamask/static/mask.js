@@ -34,3 +34,4 @@ function loop_snapshot() {
     var targetFPS = 3;
     setTimeout(loop_snapshot, 1000 / targetFPS);
 }
+
